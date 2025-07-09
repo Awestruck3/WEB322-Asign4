@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Project</title>
+</head>
+<body>
+    <%-include('partials/navbar',{page: ''})%>
+
+      <div class="container mx-auto">
+      <div class="hero bg-base-200 p-4 w-full">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold"><%= project.title %></h1>
+            <p class="py-6">
+                Below you will find information on the project: <br> <%=project.title%>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+        <div class="grid grid-cols-2 md:grid-cols-2">
+          <img src="<%=project.feature_img_url%>" alt="Featured image for <%=project.title%>" />
+          <div>
+        <div class="border-2:">
+            <p><%=project.intro_short%></p>
+        </div>
+        <span class="font-bold">Impact:</span>
+        <div>
+            <p><%=project.impact%></p>
+        </div>
+        <p>Find out more here! <%=project.original_source_url%></p>
+        <br><br><br>
+        <p id="quotePlace"></p>
+        <br><br><br>
+        <a href="#"onclick="history.back(); return false;"">Return</a>
+        </div>
+        </div> 
+      </div>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", ()=>{
+    fetch("https://dummyjson.com/quotes/random")
+    .then((response) => response.json())
+    .then((json)=>{
+        document.getElementById("quotePlace").innerHTML = `"${json.quote}" <br><br>  <em>-${json.author}</em>`
+    })
+    
+/* TODO: "fetch" the data at: https://dummyjson.com/quotes/random and update an element in the DOM
+with the "quote" and "author" */
+});
+</script>
+</html>
